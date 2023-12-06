@@ -60,7 +60,6 @@ document.getElementById('search').addEventListener('input', updateSearchResult);
 5. 함수 호출 취소하기
 ```
 debouncedFunction.cancel();
-
 ```
 debouncedFunction.cancel()을 호출하면, 현재 대기 중인 함수 호출이 취소됩니다. 이는 wait 시간이 경과하기 전에 새로운 함수 호출이 필요한 경우에 유용합니다. 예를 들어, 사용자가 입력을 중단하고 다른 작업을 수행하는 경우 등에 활용할 수 있습니다.
 
