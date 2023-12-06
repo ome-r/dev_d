@@ -23,24 +23,31 @@
     <script>
         function debounce(func, wait = 0, immediate = false) {
             let timer;
+            let resolve;  
         
             const debounced = function(...args) {
                 const context = this;
-                let resolve;  
 
-                const later = function() {
-                    timer = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                const callNow = immediate && !timer;
-                clearTimeout(timer);
-                timer = setTimeout(later, wait);
-                if (callNow) resolve(func.apply(context, args));
-                return new Promise(res => {
-                    resolve = res;
-                });
-           
-            };
+            if (timer) {
+            clearTimeout(timer);
+            }
+
+            return new Promise((res) => {
+            timer = setTimeout(() => {
+                timer = null;
+                if (!immediate) {
+                resolve = res;
+                func.apply(context, args);
+                }
+            }, wait);
+
+            if (immediate && !timer) {
+                resolve = res;
+                func.apply(context, args);
+            }
+            });
+         };
+        
         
             debounced.cancel = function() {
                 clearTimeout(timer);
