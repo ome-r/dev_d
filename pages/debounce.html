@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../assets/css/debounce.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Debounce_Dev.d</title>
+</head>
+<body>
+    <div class="devd">
+        <div class="container">
+          <img src="../assets/img/devd.png" alt="logo">
+          <div class="input-box">
+            <i class="fas fa-magnifying-glass"></i>
+            <input type="text" id="search" placeholder="검색어를 입력하세요.">
+            <i class="fas fa-keyboard"></i>
+            <i class="fas fa-microphone"></i>
+          </div>
+          <p> DEV.D 제공 서비스 : <a href="https://www.zipup.co.kr/app">ZIPUP</a> </p>
+        </div>
+      </div>
+
+    <script>
+        function debounce(func, wait = 0, immediate = false) {
+            let timer;
+        
+            const debounced = function(...args) {
+                const context = this;
+                const later = function() {
+                    timer = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timer;
+                clearTimeout(timer);
+                timer = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        
+            debounced.cancel = function() {
+                clearTimeout(timer);
+                timer = null;
+            };
+
+            return debounced;
+        }
+
+        const updateSearchResult = debounce(function(e) {
+            console.log('Saving data', e.target.value);
+        }, 500);
+
+        document.getElementById('search').addEventListener('input', updateSearchResult);
+    </script>
+</body>
+</html>

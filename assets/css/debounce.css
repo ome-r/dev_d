@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular';
+}
+img{
+    width: 300px;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+.devd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+.container{
+    padding: 100px 50px;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+}
+.input-box{
+    display: flex;
+    margin: 15px;
+    width: 400px;
+    padding: 6px;
+    border-radius: 15px;
+    border: 1px solid #e2e2e2;
+}
+.input-box i{
+    flex: 1;
+}
+.input-box input{
+    flex: 7;
+    border: none;
+    outline: none;
+}
+.fa-solid, .fas {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    cursor: pointer;
+}
+
