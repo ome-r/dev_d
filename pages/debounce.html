@@ -26,6 +26,8 @@
         
             const debounced = function(...args) {
                 const context = this;
+                let resolve; // 프로미스가 해결될 때 호출될 함수
+
                 const later = function() {
                     timer = null;
                     if (!immediate) func.apply(context, args);
@@ -33,7 +35,12 @@
                 const callNow = immediate && !timer;
                 clearTimeout(timer);
                 timer = setTimeout(later, wait);
-                if (callNow) func.apply(context, args);
+                if (callNow) resolve(func.apply(context, args));
+                   // 프로미스를 반환
+                return new Promise(res => {
+                    resolve = res;
+                });
+           
             };
         
             debounced.cancel = function() {
