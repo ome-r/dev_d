@@ -39,7 +39,7 @@ Debounce 함수는 세 개의 매개변수를 받습니다.
 - `func`: debounce 처리를 하고자 하는 함수입니다.
 - `wait`: 함수 호출 사이에 대기할 시간을 밀리초 단위로 입력합니다. 기본값은 0입니다.
 - `immediate`: 이 값이 true로 설정되면, debounce 함수는 대기 시간이 시작할 때 대상 함수를 호출합니다. 기본값은 false입니다.
-- 또한 debounce 함수는 프로미스를 반환하며, 원래 함수의 실행이 완료될 때 프로미스가 해결됩니다.
+- Promise : debounce 함수는 프로미스를 반환하며, 원래 함수의 실행이 완료될 때 프로미스가 해결됩니다. 이는 원래 함수가 비동기적인 작업을 수행하는 경우에 유용하며, 이를 통해 debounce 함수의 사용자는 원래 함수의 실행 결과를 비동기적으로 처리할 수 있습니다.
 
 3. 함수의 사용법
 ```javascript
@@ -56,6 +56,13 @@ document.getElementById('search').addEventListener('input', updateSearchResult);
 ```
 
 위와 같이, debounce 함수를 이용해 만든 함수를 이벤트 핸들러에 바인딩할 수 있습니다. 이 경우, 사용자가 'search' 입력 필드에 입력을 할 때마다 `updateSearchResult` 함수가 호출되지만, 실제로는 500밀리초마다 한 번씩만 호출됩니다.
+
+5. 함수 호출 취소하기
+```
+debouncedFunction.cancel();
+
+```
+debouncedFunction.cancel()을 호출하면, 현재 대기 중인 함수 호출이 취소됩니다. 이는 wait 시간이 경과하기 전에 새로운 함수 호출이 필요한 경우에 유용합니다. 예를 들어, 사용자가 입력을 중단하고 다른 작업을 수행하는 경우 등에 활용할 수 있습니다.
 
 ## 아키텍처
 ```
